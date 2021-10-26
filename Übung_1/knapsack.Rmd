@@ -1,0 +1,71 @@
+---
+title: "Dynamische Programmierung am Beispiel des Knapsack-Problems"
+author: "Markus Gumbel"
+date: "`r format(Sys.time(), '%d. %B %Y')`"
+output:
+  html_document:
+    toc: yes
+    df_print: paged
+  html_notebook:
+    number_sections: yes
+    toc: yes
+---
+
+```{r}
+source("dynprofertig.R")
+```
+
+Wir zeigen das Knapsack-Problem. Zunächst die Parameter.
+```{r}
+K = matrix(c( # Gewichte und Werte
+  2, 9,
+  3, 8,
+  6, 11,
+  2, 6,
+  5, 12,
+  2, 8,
+  3, 9
+), ncol = 2, byrow = TRUE)
+
+C = 10 # Maximale Kapazität
+```
+
+Nun die Funktionen. Vorsicht: globale Variablen. Wenn Sie wollen, können Sie die Parameter auch in eine Liste packen.
+```{r}
+value = function(i, r, d) {
+  vi = K[i, 2]
+  d * vi
+}
+
+prevstates = function(i, r, d) {
+  vi = K[i, 1]
+  if (i > 1) c(i - 1, r + d * vi) else c()
+}
+
+decisions = function(i, r) {
+  wi = K[i, 1]
+  if ((r - 1) + wi <= C) c(0, 1) else c(0)
+}
+```
+
+Jetzt wird der Algorithmus aufgerufen.
+```{r}
+M = dynpro.matrix(rows = 1:7, columns = 0:C,
+                  value, prevstates, decisions)
+```
+Die akkumulierten Werte sind:
+```{r}
+M$A
+```
+
+Die getroffenen Entscheidungen sind:
+```{r}
+M$D
+```
+
+Nun ermitteln wir den optimalen Pfad (Entscheidungen) ausgehend von dem Maximum in Zelle (4, 1). Hinweis: Ist `dynpro.path` noch nicht ausprogrammiert, bekommen Sie unsinnige Ergebnisse.
+```{r}
+dynpro.path(M$D, prevstates, 7, 1)
+```
+
+

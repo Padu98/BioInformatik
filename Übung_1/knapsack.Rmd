@@ -36,16 +36,28 @@ value = function(i, r, d) {
   vi = K[i, 2]
   d * vi
 }
+#value=function(i,r,d){
 
+#}keine änderung d* vi
 prevstates = function(i, r, d) {
   vi = K[i, 1]
   if (i > 1) c(i - 1, r + d * vi) else c()
 }
-
+#pervstates= function (i,j,d){
+# vi = K[i,Capa]
+# }
+#pervstates= function( i,r,d){
+#
+#}falls d=0 -> (i-1,r)   # falls d=1 -> (i-1, r-capacity_i)
 decisions = function(i, r) {
   wi = K[i, 1]
   if ((r - 1) + wi <= C) c(0, 1) else c(0)
 }
+#decisions= function(i,r){
+#
+#}falls r-capacity_i >= 0 -> 0 ,1      else -> 0
+#
+
 ```
 
 Jetzt wird der Algorithmus aufgerufen.

@@ -94,8 +94,8 @@ dynpro.path = function(D, prevstates, i, j) {
 
   repeat { # Solange es Vorgängerzustände gibt...
     d = D[ix, jx] # Entscheidung
-    p = c(p, d)
-    print(p)# Füge diese zum Pfad hinzu.
+    p = c(p, d)# Füge diese zum Pfad hinzu.
+    print(p)
     pidx = prevstates(ix, jx, d) # Vorgängerzustand
     if (length(pidx) == 0) break # Gibt es keinen Vorgängerzustand?
     ix = pidx[1]; jx = pidx[2]

@@ -1,0 +1,68 @@
+---
+title: "B2A2"
+author: "Niclas Krembsler"
+date: "28 11 2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r warining=FALSE, message=FALSE}
+#library(mosaic)
+#library(knitr)
+#library(dplyr)
+source("RBIB.R")
+library(Biostrings)
+```
+Die Sequenzen sind: 
+```{r}
+#Nukleotide
+snuk = "CGATCCTGT"
+tnuk = "CATCGCCTT"
+#Aminosäuren
+sam = "KIQYKREPNIPSVSLINSLFAWEIRDRI"
+tam = "KAQYRRECMIFVWEINRL"
+```
+
+```{r}
+M = getmat()
+```
+
+Globales Alignment der beiden Nukleotide:
+
+```{r}
+align(snuk, tnuk, M)
+```
+
+Lokales Alignment der beiden Nukleotide:
+
+```{r}
+align(snuk, tnuk, M, "local")
+```
+
+Globales Alignment der beiden Aminosäuren:
+
+```{r}
+align(sam, tam, M)
+```
+
+Lokales Alignment der beiden Aminosäure:
+
+```{r}
+align(sam, tam, M, "local")
+```
+
+Aufgabe 2.4
+
+
+Globales Alignment mit BLOSUM62:
+
+```{r}
+blosum(sam, tam)
+```
+
+Lokales Alignment mi BLOSUM62
+
+```{r}
+blosum(sam, tam, "local")
+```

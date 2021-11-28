@@ -1,6 +1,6 @@
 ---
 title: "Dynamische Programmierung am Beispiel des Knapsack-Problems"
-author: "Markus Gumbel"
+author: "PNF"
 date: "`r format(Sys.time(), '%d. %B %Y')`"
 output:
   html_document:
